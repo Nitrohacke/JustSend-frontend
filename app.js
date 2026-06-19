@@ -1,8 +1,7 @@
 const API_URL = 'https://justsend-backend-g551.onrender.com';
+let selectedGift = { name: '', price: 0, img: '' };
+let userName = '';
 
-let selectedGift = { name: '', price: 0, emoji: '' };
-
-// Auto splash to onboarding
 window.onload = () => {
   setTimeout(() => showScreen('onboarding-1'), 2500);
 };
@@ -20,15 +19,27 @@ function showScreen(id) {
   }
 }
 
-function selectGift(name, price) {
-  const emojis = {
-    'Chocolate Cake': '🎂',
-    'Red Roses Bouquet': '🌹',
-    'Birthday Gift Hamper': '🧺',
-    'Mixed Flowers': '🌸'
-  };
-  selectedGift = { name, price, emoji: emojis[name] || '🎁' };
+function setNav(id) {
+  showScreen(id);
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+}
+
+function selectGift(name, price, img) {
+  selectedGift = { name, price, img };
   showScreen('recipient');
+}
+
+function updateReview() {
+  const name = document.getElementById('rec-name')?.value || '—';
+  const message = document.getElementById('rec-message')?.value || '—';
+  const total = selectedGift.price + 5000;
+  document.getElementById('review-gift-name').textContent = selectedGift.name;
+  document.getElementById('review-gift-price').textContent = `₦${selectedGift.price.toLocaleString()}`;
+  document.getElementById('review-img').src = selectedGift.img;
+  document.getElementById('review-recipient').textContent = name;
+  document.getElementById('review-message').textContent = message;
+  document.getElementById('review-price').textContent = `₦${selectedGift.price.toLocaleString()}`;
+  document.getElementById('review-total').textContent = `₦${total.toLocaleString()}`;
 }
 
 async function sendOTP(type) {
@@ -43,7 +54,7 @@ async function sendOTP(type) {
     return;
   }
 
-  errorEl.style.color = '#666';
+  errorEl.style.color = '#888';
   errorEl.textContent = 'Sending OTP...';
 
   try {
@@ -54,13 +65,13 @@ async function sendOTP(type) {
     });
     const data = await res.json();
     if (res.ok) {
-      errorEl.style.color = 'green';
-      errorEl.textContent = 'OTP sent! Check your email.';
+      errorEl.style.color = '#2eb872';
+      errorEl.textContent = '✓ OTP sent! Check your email.';
     } else {
       errorEl.style.color = 'red';
       errorEl.textContent = data.message || 'Failed to send OTP';
     }
-  } catch (err) {
+  } catch {
     errorEl.style.color = 'red';
     errorEl.textContent = 'Network error, please try again';
   }
@@ -78,7 +89,7 @@ async function verifyAndSignup() {
     return;
   }
 
-  errorEl.style.color = '#666';
+  errorEl.style.color = '#888';
   errorEl.textContent = 'Verifying...';
 
   try {
@@ -89,13 +100,16 @@ async function verifyAndSignup() {
     });
     const data = await res.json();
     if (res.ok) {
-      document.querySelector('.greeting').textContent = `Hi, ${name} 👋`;
+      userName = name.split(' ')[0];
+      document.getElementById('greeting-name').textContent = `Hi, ${userName} 👋`;
+      document.getElementById('profile-name').textContent = name;
+      document.getElementById('profile-email').textContent = email;
       showScreen('home');
     } else {
       errorEl.style.color = 'red';
       errorEl.textContent = data.message || 'Invalid OTP';
     }
-  } catch (err) {
+  } catch {
     errorEl.style.color = 'red';
     errorEl.textContent = 'Network error, please try again';
   }
@@ -112,7 +126,7 @@ async function verifyAndLogin() {
     return;
   }
 
-  errorEl.style.color = '#666';
+  errorEl.style.color = '#888';
   errorEl.textContent = 'Verifying...';
 
   try {
@@ -123,20 +137,21 @@ async function verifyAndLogin() {
     });
     const data = await res.json();
     if (res.ok) {
+      document.getElementById('profile-email').textContent = email;
       showScreen('home');
     } else {
       errorEl.style.color = 'red';
       errorEl.textContent = data.message || 'Invalid OTP';
     }
-  } catch (err) {
+  } catch {
     errorEl.style.color = 'red';
     errorEl.textContent = 'Network error, please try again';
   }
 }
 
 function copyReferral() {
-  navigator.clipboard.writeText('https://justsend.app/ref/israel');
-  alert('Referral link copied!');
+  navigator.clipboard.writeText('https://justsend.app/ref/israel')
+    .then(() => alert('Referral link copied!'));
 }
 
 async function sendSupportMessage() {
@@ -155,8 +170,9 @@ async function sendSupportMessage() {
 
   const typing = document.createElement('div');
   typing.className = 'chat-msg bot';
-  typing.innerHTML = `<p>Typing...</p>`;
+  typing.innerHTML = `<p>...</p>`;
   container.appendChild(typing);
+  container.scrollTop = container.scrollHeight;
 
   try {
     const res = await fetch('https://api.anthropic.com/v1/messages', {
@@ -165,15 +181,22 @@ async function sendSupportMessage() {
       body: JSON.stringify({
         model: 'claude-sonnet-4-6',
         max_tokens: 1000,
-        system: 'You are a friendly customer support assistant for JustSend, a gift delivery app in Nigeria where senders can send gifts without knowing the recipient address. Keep responses short, helpful and friendly.',
+        system: 'You are a friendly customer support assistant for JustSend, a gift delivery app in Nigeria where senders can send gifts to anyone without knowing their delivery address. The recipient gets an invite and privately shares their address. Keep responses short, warm and helpful. If you cannot resolve an issue, ask them to email support.justsend@gmail.com',
         messages: [{ role: 'user', content: message }]
       })
     });
     const data = await res.json();
     typing.innerHTML = `<p>${data.content[0].text}</p>`;
   } catch {
-    typing.innerHTML = `<p>Sorry, I'm having trouble connecting right now. Please try again or email us at support@justsend.ng</p>`;
+    typing.innerHTML = `<p>Sorry, I'm having trouble right now. Please email us at support.justsend@gmail.com</p>`;
   }
 
   container.scrollTop = container.scrollHeight;
 }
+
+// Update review when navigating to it
+const origShowScreen = showScreen;
+window.showScreen = function(id) {
+  if (id === 'review') updateReview();
+  origShowScreen(id);
+};
