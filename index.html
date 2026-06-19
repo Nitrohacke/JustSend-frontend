@@ -1,124 +1,551 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>JustSend</title>
   <link rel="stylesheet" href="style.css" />
+  <link rel="manifest" href="manifest.json" />
 </head>
 <body>
 
-  <!-- Splash Screen -->
-  <div class="screen active" id="splash" onclick="showScreen('onboarding-1')">
+  <!-- Splash -->
+  <div class="screen active" id="splash">
     <div class="splash-content">
-      <div class="logo-box">🎁</div>
-      <h1><span class="purple">just</span>send</h1>
-      <p>Send surprise gifts without knowing the address</p>
-      <div class="dots">
-        <span class="dot active"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
-      </div>
+      <img src="logo.png" alt="JustSend" class="logo" />
+      <p class="tagline">Send surprise gifts without knowing the address</p>
     </div>
   </div>
 
   <!-- Onboarding 1 -->
   <div class="screen" id="onboarding-1">
-    <div class="onboarding-top">
+    <div class="ob-header">
       <span></span>
       <span class="skip" onclick="showScreen('signup')">Skip</span>
     </div>
-    <div class="onboarding-content">
-      <div class="onboarding-img">🌍</div>
-      <h2>Send surprise gifts anywhere in the world</h2>
-      <p>Choose a gift, enter the recipient's contact and we handle the rest.</p>
+    <div class="ob-body">
+      <div class="ob-emoji">🎁</div>
+      <h2>Send surprise gifts anywhere</h2>
+      <p>Choose a gift from any vendor and send it to someone special without needing their address.</p>
+    </div>
+    <div class="ob-footer">
       <div class="dots">
         <span class="dot active"></span>
         <span class="dot"></span>
         <span class="dot"></span>
       </div>
+      <button class="btn-primary" onclick="showScreen('onboarding-2')">Next</button>
     </div>
-    <button class="btn-primary" onclick="showScreen('onboarding-2')">Next</button>
   </div>
 
   <!-- Onboarding 2 -->
   <div class="screen" id="onboarding-2">
-    <div class="onboarding-top">
+    <div class="ob-header">
       <span></span>
       <span class="skip" onclick="showScreen('signup')">Skip</span>
     </div>
-    <div class="onboarding-content">
-      <div class="onboarding-img">📱</div>
-      <h2>They choose to accept and receive it safely</h2>
-      <p>Recipients get an invite, confirm their address privately and receive their gift.</p>
+    <div class="ob-body">
+      <div class="ob-emoji">📩</div>
+      <h2>They get an invite to accept</h2>
+      <p>Your recipient gets a notification. They choose to accept and privately enter their delivery address.</p>
+    </div>
+    <div class="ob-footer">
       <div class="dots">
         <span class="dot"></span>
         <span class="dot active"></span>
         <span class="dot"></span>
       </div>
+      <button class="btn-primary" onclick="showScreen('onboarding-3')">Next</button>
     </div>
-    <button class="btn-primary" onclick="showScreen('onboarding-3')">Next</button>
   </div>
 
   <!-- Onboarding 3 -->
   <div class="screen" id="onboarding-3">
-    <div class="onboarding-top">
+    <div class="ob-header">
       <span></span>
       <span class="skip" onclick="showScreen('signup')">Skip</span>
     </div>
-    <div class="onboarding-content">
-      <div class="onboarding-img">🔒</div>
-      <h2>Safe, private and reliable delivery</h2>
-      <p>The sender never sees the address. Only the recipient controls where it goes.</p>
+    <div class="ob-body">
+      <div class="ob-emoji">🚚</div>
+      <h2>Delivered with joy</h2>
+      <p>We deliver the gift to them. You never see their address. Safe, private and reliable.</p>
+    </div>
+    <div class="ob-footer">
       <div class="dots">
         <span class="dot"></span>
         <span class="dot"></span>
         <span class="dot active"></span>
       </div>
+      <button class="btn-primary" onclick="showScreen('signup')">Get Started</button>
     </div>
-    <button class="btn-primary" onclick="showScreen('signup')">Get Started</button>
   </div>
 
-  <!-- Sign Up Screen -->
+  <!-- Sign Up -->
   <div class="screen" id="signup">
-    <div class="screen-content">
+    <div class="auth-content">
+      <img src="logo.png" alt="JustSend" class="auth-logo" />
       <h2>Create your account</h2>
-      <p>Join JustSend and start gifting</p>
+      <p class="auth-sub">Join JustSend and start gifting</p>
       <input type="text" id="signup-name" placeholder="Full Name" class="input-field" />
       <input type="email" id="signup-email" placeholder="Email Address" class="input-field" />
       <div class="otp-row">
-        <input type="text" id="signup-otp" placeholder="Enter OTP" class="input-field otp-input" />
+        <input type="number" id="signup-otp" placeholder="Enter OTP code" class="input-field otp-input" />
         <button class="btn-otp" onclick="sendOTP('signup')">Request Code</button>
       </div>
       <p class="error-msg" id="signup-error"></p>
-      <button class="btn-primary" onclick="verifyAndSignup()">Sign Up</button>
+      <button class="btn-primary full" onclick="verifyAndSignup()">Sign Up</button>
       <p class="switch-auth">Already have an account? <span onclick="showScreen('login')">Log In</span></p>
     </div>
   </div>
 
-  <!-- Login Screen -->
+  <!-- Login -->
   <div class="screen" id="login">
-    <div class="screen-content">
+    <div class="auth-content">
+      <img src="logo.png" alt="JustSend" class="auth-logo" />
       <h2>Welcome back 👋</h2>
-      <p>Log in to continue</p>
+      <p class="auth-sub">Log in to continue</p>
       <input type="email" id="login-email" placeholder="Email Address" class="input-field" />
       <div class="otp-row">
-        <input type="text" id="login-otp" placeholder="Enter OTP" class="input-field otp-input" />
+        <input type="number" id="login-otp" placeholder="Enter OTP code" class="input-field otp-input" />
         <button class="btn-otp" onclick="sendOTP('login')">Request Code</button>
       </div>
       <p class="error-msg" id="login-error"></p>
-      <button class="btn-primary" onclick="verifyAndLogin()">Log In</button>
+      <button class="btn-primary full" onclick="verifyAndLogin()">Log In</button>
       <p class="switch-auth">Don't have an account? <span onclick="showScreen('signup')">Sign Up</span></p>
     </div>
   </div>
 
-  <!-- Success Screen -->
-  <div class="screen" id="success">
-    <div class="screen-content center">
-      <div class="success-icon">🎉</div>
-      <h2>You're in!</h2>
-      <p>Welcome to JustSend</p>
-      <button class="btn-primary">Continue</button>
+  <!-- Home -->
+  <div class="screen" id="home">
+    <div class="home-content">
+      <div class="home-header">
+        <div>
+          <p class="greeting">Hi, Israel 👋</p>
+          <p class="home-sub">What are you sending today?</p>
+        </div>
+        <div class="notif-icon">🔔</div>
+      </div>
+
+      <div class="wallet-card">
+        <p class="wallet-label">Wallet Balance</p>
+        <h2 class="wallet-amount">₦0.00</h2>
+        <button class="btn-topup">Top Up</button>
+      </div>
+
+      <div class="send-banner" onclick="showScreen('choose-gift')">
+        <div>
+          <p class="banner-title">Send a Gift 🎁</p>
+          <p class="banner-sub">Make someone's day</p>
+        </div>
+        <span class="banner-arrow">→</span>
+      </div>
+
+      <div class="section-header">
+        <p class="section-title">Popular Gifts</p>
+        <span class="see-all">See all</span>
+      </div>
+
+      <div class="gifts-row">
+        <div class="gift-card" onclick="showScreen('choose-gift')">
+          <div class="gift-emoji">🎂</div>
+          <p class="gift-name">Chocolate Cake</p>
+          <p class="gift-price">₦20,000</p>
+        </div>
+        <div class="gift-card" onclick="showScreen('choose-gift')">
+          <div class="gift-emoji">🌹</div>
+          <p class="gift-name">Red Roses</p>
+          <p class="gift-price">₦15,000</p>
+        </div>
+        <div class="gift-card" onclick="showScreen('choose-gift')">
+          <div class="gift-emoji">🧺</div>
+          <p class="gift-name">Gift Hamper</p>
+          <p class="gift-price">₦25,000</p>
+        </div>
+      </div>
+
+      <div class="section-header">
+        <p class="section-title">Vendors</p>
+        <span class="see-all">See all</span>
+      </div>
+
+      <div class="vendors-list">
+        <div class="vendor-card" onclick="showScreen('choose-gift')">
+          <div class="vendor-emoji">🎂</div>
+          <div class="vendor-info">
+            <p class="vendor-name">Sweet Cakes Lagos</p>
+            <p class="vendor-sub">Cakes & Pastries • Lagos Island</p>
+          </div>
+          <span class="vendor-arrow">→</span>
+        </div>
+        <div class="vendor-card" onclick="showScreen('choose-gift')">
+          <div class="vendor-emoji">🌸</div>
+          <div class="vendor-info">
+            <p class="vendor-name">Bloom Flowers</p>
+            <p class="vendor-sub">Flowers & Bouquets • Victoria Island</p>
+          </div>
+          <span class="vendor-arrow">→</span>
+        </div>
+        <div class="vendor-card" onclick="showScreen('choose-gift')">
+          <div class="vendor-emoji">🧺</div>
+          <div class="vendor-info">
+            <p class="vendor-name">Hamper House</p>
+            <p class="vendor-sub">Gift Hampers • Lekki</p>
+          </div>
+          <span class="vendor-arrow">→</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Nav -->
+    <div class="bottom-nav">
+      <div class="nav-item active" onclick="showScreen('home')">
+        <span>🏠</span><p>Home</p>
+      </div>
+      <div class="nav-item" onclick="showScreen('orders')">
+        <span>📦</span><p>Orders</p>
+      </div>
+      <div class="nav-item" onclick="showScreen('rewards')">
+        <span>🎉</span><p>Rewards</p>
+      </div>
+      <div class="nav-item" onclick="showScreen('support')">
+        <span>💬</span><p>Support</p>
+      </div>
+      <div class="nav-item" onclick="showScreen('profile')">
+        <span>👤</span><p>Profile</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Choose Gift -->
+  <div class="screen" id="choose-gift">
+    <div class="inner-header">
+      <span onclick="showScreen('home')">←</span>
+      <p>Choose Gift</p>
+      <span>🛒</span>
+    </div>
+    <div class="filter-tabs">
+      <span class="tab active">All</span>
+      <span class="tab">Cakes</span>
+      <span class="tab">Flowers</span>
+      <span class="tab">Hampers</span>
+    </div>
+    <div class="gift-list">
+      <div class="gift-list-item" onclick="selectGift('Chocolate Cake', 20000)">
+        <div class="gift-list-emoji">🎂</div>
+        <div class="gift-list-info">
+          <p class="gift-list-name">Chocolate Cake</p>
+          <p class="gift-list-sub">Rich chocolate cake</p>
+          <p class="gift-list-price">₦20,000</p>
+        </div>
+        <button class="btn-add">+</button>
+      </div>
+      <div class="gift-list-item" onclick="selectGift('Red Roses Bouquet', 15000)">
+        <div class="gift-list-emoji">🌹</div>
+        <div class="gift-list-info">
+          <p class="gift-list-name">Red Roses Bouquet</p>
+          <p class="gift-list-sub">Beautiful red roses</p>
+          <p class="gift-list-price">₦15,000</p>
+        </div>
+        <button class="btn-add">+</button>
+      </div>
+      <div class="gift-list-item" onclick="selectGift('Birthday Gift Hamper', 25000)">
+        <div class="gift-list-emoji">🧺</div>
+        <div class="gift-list-info">
+          <p class="gift-list-name">Birthday Gift Hamper</p>
+          <p class="gift-list-sub">Lovely gift hamper</p>
+          <p class="gift-list-price">₦25,000</p>
+        </div>
+        <button class="btn-add">+</button>
+      </div>
+      <div class="gift-list-item" onclick="selectGift('Mixed Flowers', 18000)">
+        <div class="gift-list-emoji">🌸</div>
+        <div class="gift-list-info">
+          <p class="gift-list-name">Mixed Flowers</p>
+          <p class="gift-list-sub">Lovely mix bouquet</p>
+          <p class="gift-list-price">₦18,000</p>
+        </div>
+        <button class="btn-add">+</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Recipient Details -->
+  <div class="screen" id="recipient">
+    <div class="inner-header">
+      <span onclick="showScreen('choose-gift')">←</span>
+      <p>Recipient Details</p>
+      <span></span>
+    </div>
+    <div class="form-content">
+      <input type="text" id="rec-name" placeholder="Recipient Name (optional)" class="input-field" />
+      <input type="text" id="rec-contact" placeholder="Phone / WhatsApp / Email *" class="input-field" />
+      <textarea id="rec-message" placeholder="Personal Message (optional)" class="input-field textarea"></textarea>
+      <textarea id="rec-note" placeholder="Add a note to vendor e.g. include a card" class="input-field textarea"></textarea>
+      <button class="btn-primary full" onclick="showScreen('review')">Send Gift Invitation</button>
+      <p class="invite-note">We will send an invitation for them to accept or decline your gift.</p>
+    </div>
+  </div>
+
+  <!-- Review & Pay -->
+  <div class="screen" id="review">
+    <div class="inner-header">
+      <span onclick="showScreen('recipient')">←</span>
+      <p>Review Gift</p>
+      <span></span>
+    </div>
+    <div class="form-content">
+      <div class="review-gift-card">
+        <div class="review-emoji" id="review-emoji">🎂</div>
+        <div>
+          <p class="review-gift-name" id="review-gift-name">Chocolate Cake</p>
+          <p class="review-gift-sub">Rich chocolate cake</p>
+        </div>
+        <p class="review-gift-price" id="review-gift-price">₦20,000</p>
+      </div>
+      <div class="review-details">
+        <div class="review-row">
+          <p>To</p>
+          <p id="review-recipient">John Doe</p>
+        </div>
+        <div class="review-row">
+          <p>Message</p>
+          <p id="review-message">Happy birthday!</p>
+        </div>
+        <div class="review-row">
+          <p>Gift Price</p>
+          <p id="review-price">₦20,000</p>
+        </div>
+        <div class="review-row">
+          <p>Delivery Fee</p>
+          <p>₦3,000</p>
+        </div>
+        <div class="review-row">
+          <p>Service Fee</p>
+          <p>₦2,000</p>
+        </div>
+        <div class="review-row total">
+          <p>Total</p>
+          <p id="review-total">₦25,000</p>
+        </div>
+      </div>
+      <button class="btn-primary full" onclick="showScreen('payment')">Proceed to Pay</button>
+    </div>
+  </div>
+
+  <!-- Payment -->
+  <div class="screen" id="payment">
+    <div class="inner-header">
+      <span onclick="showScreen('review')">←</span>
+      <p>Payment</p>
+      <span></span>
+    </div>
+    <div class="form-content">
+      <p class="section-title">Select Payment Method</p>
+      <div class="payment-options">
+        <label class="payment-option selected">
+          <input type="radio" name="payment" checked />
+          <span>💳 Card Payment</span>
+        </label>
+        <label class="payment-option">
+          <input type="radio" name="payment" />
+          <span>🏦 Bank Transfer</span>
+        </label>
+        <label class="payment-option">
+          <input type="radio" name="payment" />
+          <span>👛 Wallet Balance (₦0.00)</span>
+        </label>
+      </div>
+      <div class="review-row total" style="margin-top:24px">
+        <p>Total Amount</p>
+        <p>₦25,000</p>
+      </div>
+      <button class="btn-primary full" onclick="showScreen('order-sent')">Pay Now 🔒</button>
+    </div>
+  </div>
+
+  <!-- Order Sent -->
+  <div class="screen" id="order-sent">
+    <div class="center-screen">
+      <div class="ob-emoji">✈️</div>
+      <h2>Invitation Sent!</h2>
+      <p>We've sent a gift invitation to your recipient. They'll accept or decline shortly.</p>
+      <button class="btn-primary full" onclick="showScreen('orders')">View Order</button>
+      <p class="switch-auth" style="margin-top:12px"><span onclick="showScreen('home')">Back to Home</span></p>
+    </div>
+  </div>
+
+  <!-- Orders -->
+  <div class="screen" id="orders">
+    <div class="inner-header">
+      <span onclick="showScreen('home')">←</span>
+      <p>My Orders</p>
+      <span></span>
+    </div>
+    <div class="form-content">
+      <div class="order-card">
+        <div class="order-top">
+          <span>🎂 Chocolate Cake</span>
+          <span class="order-status pending">Pending</span>
+        </div>
+        <p class="order-sub">To: John Doe • ₦25,000</p>
+        <p class="order-date">Jun 19, 2026</p>
+      </div>
+      <div class="order-card">
+        <div class="order-top">
+          <span>🌹 Red Roses</span>
+          <span class="order-status delivered">Delivered</span>
+        </div>
+        <p class="order-sub">To: Sarah • ₦18,000</p>
+        <p class="order-date">Jun 15, 2026</p>
+      </div>
+    </div>
+    <div class="bottom-nav">
+      <div class="nav-item" onclick="showScreen('home')">
+        <span>🏠</span><p>Home</p>
+      </div>
+      <div class="nav-item active" onclick="showScreen('orders')">
+        <span>📦</span><p>Orders</p>
+      </div>
+      <div class="nav-item" onclick="showScreen('rewards')">
+        <span>🎉</span><p>Rewards</p>
+      </div>
+      <div class="nav-item" onclick="showScreen('support')">
+        <span>💬</span><p>Support</p>
+      </div>
+      <div class="nav-item" onclick="showScreen('profile')">
+        <span>👤</span><p>Profile</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Rewards -->
+  <div class="screen" id="rewards">
+    <div class="inner-header">
+      <span onclick="showScreen('home')">←</span>
+      <p>Rewards</p>
+      <span></span>
+    </div>
+    <div class="form-content">
+      <div class="rewards-card">
+        <p class="rewards-label">Your Reward Balance</p>
+        <h2 class="rewards-amount">₦0</h2>
+        <p class="rewards-sub">Earn ₦500 for every friend you invite who uses JustSend</p>
+      </div>
+      <div class="referral-box">
+        <p class="referral-title">Your Referral Link</p>
+        <div class="referral-link-row">
+          <p class="referral-link">justsend.app/ref/israel</p>
+          <button class="btn-otp" onclick="copyReferral()">Copy</button>
+        </div>
+      </div>
+      <div class="rewards-note">
+        <p>💡 Rewards can only be used to offset payment on your next gift order.</p>
+      </div>
+      <button class="btn-primary full" style="opacity:0.5">Redeem Rewards</button>
+      <p class="invite-note">You have no rewards to redeem yet. Invite friends to earn.</p>
+    </div>
+    <div class="bottom-nav">
+      <div class="nav-item" onclick="showScreen('home')">
+        <span>🏠</span><p>Home</p>
+      </div>
+      <div class="nav-item" onclick="showScreen('orders')">
+        <span>📦</span><p>Orders</p>
+      </div>
+      <div class="nav-item active" onclick="showScreen('rewards')">
+        <span>🎉</span><p>Rewards</p>
+      </div>
+      <div class="nav-item" onclick="showScreen('support')">
+        <span>💬</span><p>Support</p>
+      </div>
+      <div class="nav-item" onclick="showScreen('profile')">
+        <span>👤</span><p>Profile</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Support -->
+  <div class="screen" id="support">
+    <div class="inner-header">
+      <span onclick="showScreen('home')">←</span>
+      <p>Customer Support</p>
+      <span></span>
+    </div>
+    <div class="chat-container" id="chat-messages">
+      <div class="chat-msg bot">
+        <p>👋 Hi! I'm the JustSend support assistant. How can I help you today?</p>
+      </div>
+    </div>
+    <div class="chat-input-row">
+      <input type="text" id="support-input" placeholder="Type your message..." class="input-field chat-input" />
+      <button class="btn-send" onclick="sendSupportMessage()">Send</button>
+    </div>
+    <div class="bottom-nav">
+      <div class="nav-item" onclick="showScreen('home')">
+        <span>🏠</span><p>Home</p>
+      </div>
+      <div class="nav-item" onclick="showScreen('orders')">
+        <span>📦</span><p>Orders</p>
+      </div>
+      <div class="nav-item" onclick="showScreen('rewards')">
+        <span>🎉</span><p>Rewards</p>
+      </div>
+      <div class="nav-item active" onclick="showScreen('support')">
+        <span>💬</span><p>Support</p>
+      </div>
+      <div class="nav-item" onclick="showScreen('profile')">
+        <span>👤</span><p>Profile</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Profile -->
+  <div class="screen" id="profile">
+    <div class="inner-header">
+      <span onclick="showScreen('home')">←</span>
+      <p>Profile</p>
+      <span></span>
+    </div>
+    <div class="form-content">
+      <div class="profile-avatar">👤</div>
+      <p class="profile-name">Israel Olumuyiwa</p>
+      <p class="profile-email">olumuyiwaisreal1@gmail.com</p>
+      <div class="profile-menu">
+        <div class="profile-item">
+          <span>📦</span><p>My Orders</p><span>→</span>
+        </div>
+        <div class="profile-item">
+          <span>🎉</span><p>Rewards</p><span>→</span>
+        </div>
+        <div class="profile-item">
+          <span>💳</span><p>Payment Methods</p><span>→</span>
+        </div>
+        <div class="profile-item">
+          <span>🔔</span><p>Notifications</p><span>→</span>
+        </div>
+        <div class="profile-item">
+          <span>🔒</span><p>Privacy & Security</p><span>→</span>
+        </div>
+        <div class="profile-item" onclick="showScreen('login')">
+          <span>🚪</span><p style="color:red">Log Out</p><span>→</span>
+        </div>
+      </div>
+    </div>
+    <div class="bottom-nav">
+      <div class="nav-item" onclick="showScreen('home')">
+        <span>🏠</span><p>Home</p>
+      </div>
+      <div class="nav-item" onclick="showScreen('orders')">
+        <span>📦</span><p>Orders</p>
+      </div>
+      <div class="nav-item" onclick="showScreen('rewards')">
+        <span>🎉</span><p>Rewards</p>
+      </div>
+      <div class="nav-item" onclick="showScreen('support')">
+        <span>💬</span><p>Support</p>
+      </div>
+      <div class="nav-item active" onclick="showScreen('profile')">
+        <span>👤</span><p>Profile</p>
+      </div>
     </div>
   </div>
 
