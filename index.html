@@ -6,92 +6,101 @@
   <title>JustSend</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="manifest" href="manifest.json" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
 
   <!-- Splash -->
   <div class="screen active" id="splash">
-    <div class="splash-content">
-      <img src="879402E7-A8D7-4EBD-86CD-703BCBC3CF37.png
-" alt="JustSend" class="logo" />
-      <p class="tagline">Send surprise gifts without knowing the address</p>
+    <div class="splash-bg">
+      <img src="879402E7-A8D7-4EBD-86CD-703BCBC3CF37.png" alt="JustSend" class="splash-logo" />
+      <p class="splash-tag">Send surprise gifts without knowing their address</p>
     </div>
   </div>
 
   <!-- Onboarding 1 -->
   <div class="screen" id="onboarding-1">
-    <div class="ob-header">
-      <span></span>
-      <span class="skip" onclick="showScreen('signup')">Skip</span>
+    <div class="ob-img-wrap">
+      <img src="https://images.unsplash.com/photo-1549465220-1a8b9238cd48?w=600&q=80" class="ob-img" />
+      <div class="ob-img-overlay"></div>
     </div>
-    <div class="ob-body">
-      <div class="ob-emoji">🎁</div>
-      <h2>Send surprise gifts anywhere</h2>
-      <p>Choose a gift from any vendor and send it to someone special without needing their address.</p>
-    </div>
-    <div class="ob-footer">
-      <div class="dots">
+    <div class="ob-card">
+      <div class="ob-dots">
         <span class="dot active"></span>
         <span class="dot"></span>
         <span class="dot"></span>
       </div>
-      <button class="btn-primary" onclick="showScreen('onboarding-2')">Next</button>
+      <h2>Send gifts to anyone, anywhere</h2>
+      <p>Pick something special and send it without needing their delivery address.</p>
+      <div class="ob-actions">
+        <span class="skip-txt" onclick="showScreen('signup')">Skip</span>
+        <button class="btn-primary" onclick="showScreen('onboarding-2')">Next</button>
+      </div>
     </div>
   </div>
 
   <!-- Onboarding 2 -->
   <div class="screen" id="onboarding-2">
-    <div class="ob-header">
-      <span></span>
-      <span class="skip" onclick="showScreen('signup')">Skip</span>
+    <div class="ob-img-wrap">
+      <img src="https://images.unsplash.com/photo-1607344645866-009c320b63e0?w=600&q=80" class="ob-img" />
+      <div class="ob-img-overlay"></div>
     </div>
-    <div class="ob-body">
-      <div class="ob-emoji">📩</div>
-      <h2>They get an invite to accept</h2>
-      <p>Your recipient gets a notification. They choose to accept and privately enter their delivery address.</p>
-    </div>
-    <div class="ob-footer">
-      <div class="dots">
+    <div class="ob-card">
+      <div class="ob-dots">
         <span class="dot"></span>
         <span class="dot active"></span>
         <span class="dot"></span>
       </div>
-      <button class="btn-primary" onclick="showScreen('onboarding-3')">Next</button>
+      <h2>They accept and share their address privately</h2>
+      <p>Your recipient gets an invite and decides where to receive the gift. You never see it.</p>
+      <div class="ob-actions">
+        <span class="skip-txt" onclick="showScreen('signup')">Skip</span>
+        <button class="btn-primary" onclick="showScreen('onboarding-3')">Next</button>
+      </div>
     </div>
   </div>
 
   <!-- Onboarding 3 -->
   <div class="screen" id="onboarding-3">
-    <div class="ob-header">
-      <span></span>
-      <span class="skip" onclick="showScreen('signup')">Skip</span>
+    <div class="ob-img-wrap">
+      <img src="https://images.unsplash.com/photo-1513885535751-8b9238bd345a?w=600&q=80" class="ob-img" />
+      <div class="ob-img-overlay"></div>
     </div>
-    <div class="ob-body">
-      <div class="ob-emoji">🚚</div>
-      <h2>Delivered with joy</h2>
-      <p>We deliver the gift to them. You never see their address. Safe, private and reliable.</p>
-    </div>
-    <div class="ob-footer">
-      <div class="dots">
+    <div class="ob-card">
+      <div class="ob-dots">
         <span class="dot"></span>
         <span class="dot"></span>
         <span class="dot active"></span>
       </div>
-      <button class="btn-primary" onclick="showScreen('signup')">Get Started</button>
+      <h2>Delivered with joy, safely</h2>
+      <p>We handle everything. Fast, private delivery that puts a smile on their face.</p>
+      <div class="ob-actions">
+        <span class="skip-txt" onclick="showScreen('signup')">Skip</span>
+        <button class="btn-primary" onclick="showScreen('signup')">Get Started</button>
+      </div>
     </div>
   </div>
 
   <!-- Sign Up -->
   <div class="screen" id="signup">
-    <div class="auth-content">
-      <img src="879402E7-A8D7-4EBD-86CD-703BCBC3CF37.png
-" alt="JustSend" class="auth-logo" />
+    <div class="auth-wrap">
+      <img src="879402E7-A8D7-4EBD-86CD-703BCBC3CF37.png" class="auth-logo" />
       <h2>Create your account</h2>
       <p class="auth-sub">Join JustSend and start gifting</p>
-      <input type="text" id="signup-name" placeholder="Full Name" class="input-field" />
-      <input type="email" id="signup-email" placeholder="Email Address" class="input-field" />
+      <div class="field-group">
+        <i class="fa fa-user field-icon"></i>
+        <input type="text" id="signup-name" placeholder="Full Name" class="input-field" />
+      </div>
+      <div class="field-group">
+        <i class="fa fa-envelope field-icon"></i>
+        <input type="email" id="signup-email" placeholder="Email Address" class="input-field" />
+      </div>
       <div class="otp-row">
-        <input type="number" id="signup-otp" placeholder="Enter OTP code" class="input-field otp-input" />
+        <div class="field-group otp-field">
+          <i class="fa fa-lock field-icon"></i>
+          <input type="number" id="signup-otp" placeholder="OTP Code" class="input-field" />
+        </div>
         <button class="btn-otp" onclick="sendOTP('signup')">Request Code</button>
       </div>
       <p class="error-msg" id="signup-error"></p>
@@ -102,14 +111,19 @@
 
   <!-- Login -->
   <div class="screen" id="login">
-    <div class="auth-content">
-      <img src="879402E7-A8D7-4EBD-86CD-703BCBC3CF37.png
-" alt="JustSend" class="auth-logo" />
+    <div class="auth-wrap">
+      <img src="879402E7-A8D7-4EBD-86CD-703BCBC3CF37.png" class="auth-logo" />
       <h2>Welcome back 👋</h2>
       <p class="auth-sub">Log in to continue</p>
-      <input type="email" id="login-email" placeholder="Email Address" class="input-field" />
+      <div class="field-group">
+        <i class="fa fa-envelope field-icon"></i>
+        <input type="email" id="login-email" placeholder="Email Address" class="input-field" />
+      </div>
       <div class="otp-row">
-        <input type="number" id="login-otp" placeholder="Enter OTP code" class="input-field otp-input" />
+        <div class="field-group otp-field">
+          <i class="fa fa-lock field-icon"></i>
+          <input type="number" id="login-otp" placeholder="OTP Code" class="input-field" />
+        </div>
         <button class="btn-otp" onclick="sendOTP('login')">Request Code</button>
       </div>
       <p class="error-msg" id="login-error"></p>
@@ -120,101 +134,162 @@
 
   <!-- Home -->
   <div class="screen" id="home">
-    <div class="home-content">
+    <div class="home-wrap">
+
+      <!-- Header -->
       <div class="home-header">
         <div>
-          <p class="greeting">Hi, Israel 👋</p>
+          <p class="greeting" id="greeting-name">Hi there 👋</p>
           <p class="home-sub">What are you sending today?</p>
         </div>
-        <div class="notif-icon">🔔</div>
-      </div>
-
-      <div class="wallet-card">
-        <p class="wallet-label">Wallet Balance</p>
-        <h2 class="wallet-amount">₦0.00</h2>
-        <button class="btn-topup">Top Up</button>
-      </div>
-
-      <div class="send-banner" onclick="showScreen('choose-gift')">
-        <div>
-          <p class="banner-title">Send a Gift 🎁</p>
-          <p class="banner-sub">Make someone's day</p>
+        <div class="header-icons">
+          <i class="fa fa-bell"></i>
         </div>
-        <span class="banner-arrow">→</span>
       </div>
 
+      <!-- Hero -->
+      <div class="hero-section">
+        <div class="hero-text">
+          <h2>Send surprise gifts without knowing their address</h2>
+          <p>Pick a gift, send a link, let them choose where to receive it.</p>
+          <button class="btn-hero" onclick="showScreen('choose-gift')">Send a Gift <i class="fa fa-arrow-right"></i></button>
+        </div>
+        <img src="https://images.unsplash.com/photo-1549465220-1a8b9238cd48?w=300&q=80" class="hero-img" />
+      </div>
+
+      <!-- Categories -->
+      <div class="section-header">
+        <p class="section-title">Categories</p>
+      </div>
+      <div class="categories-row">
+        <div class="cat-item active-cat" onclick="showScreen('choose-gift')">
+          <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=200&q=80" class="cat-img" />
+          <p>Cakes</p>
+        </div>
+        <div class="cat-item" onclick="showScreen('choose-gift')">
+          <img src="https://images.unsplash.com/photo-1487530811015-780780169810?w=200&q=80" class="cat-img" />
+          <p>Flowers</p>
+        </div>
+        <div class="cat-item" onclick="showScreen('choose-gift')">
+          <img src="https://images.unsplash.com/photo-1549465220-1a8b9238cd48?w=200&q=80" class="cat-img" />
+          <p>Hampers</p>
+        </div>
+        <div class="cat-item" onclick="showScreen('choose-gift')">
+          <img src="https://images.unsplash.com/photo-1541643600914-78b084683702?w=200&q=80" class="cat-img" />
+          <p>Perfumes</p>
+        </div>
+      </div>
+
+      <!-- Popular Gifts -->
       <div class="section-header">
         <p class="section-title">Popular Gifts</p>
-        <span class="see-all">See all</span>
+        <span class="see-all" onclick="showScreen('choose-gift')">See all</span>
+      </div>
+      <div class="gifts-scroll">
+        <div class="gift-card" onclick="selectGift('Chocolate Cake', 20000, 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=300&q=80')">
+          <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=300&q=80" class="gift-img" />
+          <div class="gift-info">
+            <p class="gift-name">Chocolate Cake</p>
+            <p class="gift-price">₦20,000</p>
+          </div>
+        </div>
+        <div class="gift-card" onclick="selectGift('Red Roses Bouquet', 15000, 'https://images.unsplash.com/photo-1487530811015-780780169810?w=300&q=80')">
+          <img src="https://images.unsplash.com/photo-1487530811015-780780169810?w=300&q=80" class="gift-img" />
+          <div class="gift-info">
+            <p class="gift-name">Red Roses</p>
+            <p class="gift-price">₦15,000</p>
+          </div>
+        </div>
+        <div class="gift-card" onclick="selectGift('Gift Hamper', 25000, 'https://images.unsplash.com/photo-1549465220-1a8b9238cd48?w=300&q=80')">
+          <img src="https://images.unsplash.com/photo-1549465220-1a8b9238cd48?w=300&q=80" class="gift-img" />
+          <div class="gift-info">
+            <p class="gift-name">Gift Hamper</p>
+            <p class="gift-price">₦25,000</p>
+          </div>
+        </div>
+        <div class="gift-card" onclick="selectGift('Perfume Set', 35000, 'https://images.unsplash.com/photo-1541643600914-78b084683702?w=300&q=80')">
+          <img src="https://images.unsplash.com/photo-1541643600914-78b084683702?w=300&q=80" class="gift-img" />
+          <div class="gift-info">
+            <p class="gift-name">Perfume Set</p>
+            <p class="gift-price">₦35,000</p>
+          </div>
+        </div>
       </div>
 
-      <div class="gifts-row">
-        <div class="gift-card" onclick="showScreen('choose-gift')">
-          <div class="gift-emoji">🎂</div>
-          <p class="gift-name">Chocolate Cake</p>
-          <p class="gift-price">₦20,000</p>
-        </div>
-        <div class="gift-card" onclick="showScreen('choose-gift')">
-          <div class="gift-emoji">🌹</div>
-          <p class="gift-name">Red Roses</p>
-          <p class="gift-price">₦15,000</p>
-        </div>
-        <div class="gift-card" onclick="showScreen('choose-gift')">
-          <div class="gift-emoji">🧺</div>
-          <p class="gift-name">Gift Hamper</p>
-          <p class="gift-price">₦25,000</p>
-        </div>
-      </div>
-
+      <!-- Vendors -->
       <div class="section-header">
-        <p class="section-title">Vendors</p>
+        <p class="section-title">Top Vendors</p>
         <span class="see-all">See all</span>
       </div>
-
       <div class="vendors-list">
         <div class="vendor-card" onclick="showScreen('choose-gift')">
-          <div class="vendor-emoji">🎂</div>
+          <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=100&q=80" class="vendor-img" />
           <div class="vendor-info">
             <p class="vendor-name">Sweet Cakes Lagos</p>
-            <p class="vendor-sub">Cakes & Pastries • Lagos Island</p>
+            <p class="vendor-sub">Cakes & Pastries · Lagos Island</p>
+            <div class="vendor-rating">
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star-half-alt"></i>
+              <span>4.5</span>
+            </div>
           </div>
-          <span class="vendor-arrow">→</span>
+          <i class="fa fa-chevron-right vendor-arrow"></i>
         </div>
         <div class="vendor-card" onclick="showScreen('choose-gift')">
-          <div class="vendor-emoji">🌸</div>
+          <img src="https://images.unsplash.com/photo-1487530811015-780780169810?w=100&q=80" class="vendor-img" />
           <div class="vendor-info">
             <p class="vendor-name">Bloom Flowers</p>
-            <p class="vendor-sub">Flowers & Bouquets • Victoria Island</p>
+            <p class="vendor-sub">Flowers & Bouquets · Victoria Island</p>
+            <div class="vendor-rating">
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <span>5.0</span>
+            </div>
           </div>
-          <span class="vendor-arrow">→</span>
+          <i class="fa fa-chevron-right vendor-arrow"></i>
         </div>
         <div class="vendor-card" onclick="showScreen('choose-gift')">
-          <div class="vendor-emoji">🧺</div>
+          <img src="https://images.unsplash.com/photo-1549465220-1a8b9238cd48?w=100&q=80" class="vendor-img" />
           <div class="vendor-info">
             <p class="vendor-name">Hamper House</p>
-            <p class="vendor-sub">Gift Hampers • Lekki</p>
+            <p class="vendor-sub">Gift Hampers · Lekki</p>
+            <div class="vendor-rating">
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star-half-alt"></i>
+              <span>4.7</span>
+            </div>
           </div>
-          <span class="vendor-arrow">→</span>
+          <i class="fa fa-chevron-right vendor-arrow"></i>
         </div>
       </div>
+
     </div>
 
     <!-- Bottom Nav -->
     <div class="bottom-nav">
-      <div class="nav-item active" onclick="showScreen('home')">
-        <span>🏠</span><p>Home</p>
+      <div class="nav-item active" onclick="setNav('home')">
+        <i class="fa fa-home"></i><p>Home</p>
       </div>
-      <div class="nav-item" onclick="showScreen('orders')">
-        <span>📦</span><p>Orders</p>
+      <div class="nav-item" onclick="setNav('orders')">
+        <i class="fa fa-box"></i><p>Orders</p>
       </div>
-      <div class="nav-item" onclick="showScreen('rewards')">
-        <span>🎉</span><p>Rewards</p>
+      <div class="nav-item" onclick="setNav('rewards')">
+        <i class="fa fa-gift"></i><p>Rewards</p>
       </div>
-      <div class="nav-item" onclick="showScreen('support')">
-        <span>💬</span><p>Support</p>
+      <div class="nav-item" onclick="setNav('support')">
+        <i class="fa fa-headset"></i><p>Support</p>
       </div>
-      <div class="nav-item" onclick="showScreen('profile')">
-        <span>👤</span><p>Profile</p>
+      <div class="nav-item" onclick="setNav('profile')">
+        <i class="fa fa-user"></i><p>Profile</p>
       </div>
     </div>
   </div>
@@ -222,19 +297,20 @@
   <!-- Choose Gift -->
   <div class="screen" id="choose-gift">
     <div class="inner-header">
-      <span onclick="showScreen('home')">←</span>
+      <i class="fa fa-arrow-left" onclick="showScreen('home')"></i>
       <p>Choose Gift</p>
-      <span>🛒</span>
+      <i class="fa fa-shopping-cart"></i>
     </div>
     <div class="filter-tabs">
       <span class="tab active">All</span>
       <span class="tab">Cakes</span>
       <span class="tab">Flowers</span>
       <span class="tab">Hampers</span>
+      <span class="tab">Perfumes</span>
     </div>
     <div class="gift-list">
-      <div class="gift-list-item" onclick="selectGift('Chocolate Cake', 20000)">
-        <div class="gift-list-emoji">🎂</div>
+      <div class="gift-list-item" onclick="selectGift('Chocolate Cake', 20000, 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=300&q=80')">
+        <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=200&q=80" class="gift-list-img" />
         <div class="gift-list-info">
           <p class="gift-list-name">Chocolate Cake</p>
           <p class="gift-list-sub">Rich chocolate cake</p>
@@ -242,8 +318,8 @@
         </div>
         <button class="btn-add">+</button>
       </div>
-      <div class="gift-list-item" onclick="selectGift('Red Roses Bouquet', 15000)">
-        <div class="gift-list-emoji">🌹</div>
+      <div class="gift-list-item" onclick="selectGift('Red Roses Bouquet', 15000, 'https://images.unsplash.com/photo-1487530811015-780780169810?w=300&q=80')">
+        <img src="https://images.unsplash.com/photo-1487530811015-780780169810?w=200&q=80" class="gift-list-img" />
         <div class="gift-list-info">
           <p class="gift-list-name">Red Roses Bouquet</p>
           <p class="gift-list-sub">Beautiful red roses</p>
@@ -251,8 +327,8 @@
         </div>
         <button class="btn-add">+</button>
       </div>
-      <div class="gift-list-item" onclick="selectGift('Birthday Gift Hamper', 25000)">
-        <div class="gift-list-emoji">🧺</div>
+      <div class="gift-list-item" onclick="selectGift('Birthday Gift Hamper', 25000, 'https://images.unsplash.com/photo-1549465220-1a8b9238cd48?w=300&q=80')">
+        <img src="https://images.unsplash.com/photo-1549465220-1a8b9238cd48?w=200&q=80" class="gift-list-img" />
         <div class="gift-list-info">
           <p class="gift-list-name">Birthday Gift Hamper</p>
           <p class="gift-list-sub">Lovely gift hamper</p>
@@ -260,12 +336,21 @@
         </div>
         <button class="btn-add">+</button>
       </div>
-      <div class="gift-list-item" onclick="selectGift('Mixed Flowers', 18000)">
-        <div class="gift-list-emoji">🌸</div>
+      <div class="gift-list-item" onclick="selectGift('Mixed Flowers', 18000, 'https://images.unsplash.com/photo-1487530811015-780780169810?w=300&q=80')">
+        <img src="https://images.unsplash.com/photo-1487530811015-780780169810?w=200&q=80" class="gift-list-img" />
         <div class="gift-list-info">
           <p class="gift-list-name">Mixed Flowers</p>
           <p class="gift-list-sub">Lovely mix bouquet</p>
           <p class="gift-list-price">₦18,000</p>
+        </div>
+        <button class="btn-add">+</button>
+      </div>
+      <div class="gift-list-item" onclick="selectGift('Perfume Set', 35000, 'https://images.unsplash.com/photo-1541643600914-78b084683702?w=300&q=80')">
+        <img src="https://images.unsplash.com/photo-1541643600914-78b084683702?w=200&q=80" class="gift-list-img" />
+        <div class="gift-list-info">
+          <p class="gift-list-name">Perfume Set</p>
+          <p class="gift-list-sub">Luxury fragrance set</p>
+          <p class="gift-list-price">₦35,000</p>
         </div>
         <button class="btn-add">+</button>
       </div>
@@ -275,45 +360,58 @@
   <!-- Recipient Details -->
   <div class="screen" id="recipient">
     <div class="inner-header">
-      <span onclick="showScreen('choose-gift')">←</span>
+      <i class="fa fa-arrow-left" onclick="showScreen('choose-gift')"></i>
       <p>Recipient Details</p>
       <span></span>
     </div>
-    <div class="form-content">
-      <input type="text" id="rec-name" placeholder="Recipient Name (optional)" class="input-field" />
-      <input type="text" id="rec-contact" placeholder="Phone / WhatsApp / Email *" class="input-field" />
-      <textarea id="rec-message" placeholder="Personal Message (optional)" class="input-field textarea"></textarea>
-      <textarea id="rec-note" placeholder="Add a note to vendor e.g. include a card" class="input-field textarea"></textarea>
+    <div class="form-wrap">
+      <div class="field-group">
+        <i class="fa fa-user field-icon"></i>
+        <input type="text" id="rec-name" placeholder="Recipient Name (optional)" class="input-field" />
+      </div>
+      <div class="field-group">
+        <i class="fa fa-phone field-icon"></i>
+        <input type="text" id="rec-contact" placeholder="Phone / WhatsApp / Email *" class="input-field" />
+      </div>
+      <div class="field-group">
+        <i class="fa fa-heart field-icon"></i>
+        <textarea id="rec-message" placeholder="Personal Message (optional)" class="input-field textarea"></textarea>
+      </div>
+      <div class="field-group">
+        <i class="fa fa-sticky-note field-icon"></i>
+        <textarea id="rec-note" placeholder="Note to vendor e.g. add a birthday card" class="input-field textarea"></textarea>
+      </div>
       <button class="btn-primary full" onclick="showScreen('review')">Send Gift Invitation</button>
-      <p class="invite-note">We will send an invitation for them to accept or decline your gift.</p>
+      <p class="invite-note"><i class="fa fa-info-circle"></i> We'll send them an invite to accept or decline your gift.</p>
     </div>
   </div>
 
   <!-- Review & Pay -->
   <div class="screen" id="review">
     <div class="inner-header">
-      <span onclick="showScreen('recipient')">←</span>
+      <i class="fa fa-arrow-left" onclick="showScreen('recipient')"></i>
       <p>Review Gift</p>
       <span></span>
     </div>
-    <div class="form-content">
+    <div class="form-wrap">
       <div class="review-gift-card">
-        <div class="review-emoji" id="review-emoji">🎂</div>
-        <div>
+        <img src="" id="review-img" class="review-img" />
+        <div class="review-gift-details">
           <p class="review-gift-name" id="review-gift-name">Chocolate Cake</p>
-          <p class="review-gift-sub">Rich chocolate cake</p>
+          <p class="review-gift-sub">Sweet Cakes Lagos</p>
+          <p class="review-gift-price" id="review-gift-price">₦20,000</p>
         </div>
-        <p class="review-gift-price" id="review-gift-price">₦20,000</p>
       </div>
-      <div class="review-details">
+      <div class="review-box">
         <div class="review-row">
           <p>To</p>
-          <p id="review-recipient">John Doe</p>
+          <p id="review-recipient">—</p>
         </div>
         <div class="review-row">
           <p>Message</p>
-          <p id="review-message">Happy birthday!</p>
+          <p id="review-message">—</p>
         </div>
+        <div class="divider"></div>
         <div class="review-row">
           <p>Gift Price</p>
           <p id="review-price">₦20,000</p>
@@ -326,7 +424,8 @@
           <p>Service Fee</p>
           <p>₦2,000</p>
         </div>
-        <div class="review-row total">
+        <div class="divider"></div>
+        <div class="review-row total-row">
           <p>Total</p>
           <p id="review-total">₦25,000</p>
         </div>
@@ -338,217 +437,220 @@
   <!-- Payment -->
   <div class="screen" id="payment">
     <div class="inner-header">
-      <span onclick="showScreen('review')">←</span>
+      <i class="fa fa-arrow-left" onclick="showScreen('review')"></i>
       <p>Payment</p>
       <span></span>
     </div>
-    <div class="form-content">
-      <p class="section-title">Select Payment Method</p>
+    <div class="form-wrap">
+      <p class="section-title" style="margin-bottom:12px">Select Payment Method</p>
       <div class="payment-options">
         <label class="payment-option selected">
           <input type="radio" name="payment" checked />
-          <span>💳 Card Payment</span>
+          <div class="payment-left">
+            <i class="fa fa-credit-card"></i>
+            <span>Card Payment</span>
+          </div>
+          <i class="fa fa-check-circle check-icon"></i>
         </label>
         <label class="payment-option">
           <input type="radio" name="payment" />
-          <span>🏦 Bank Transfer</span>
+          <div class="payment-left">
+            <i class="fa fa-university"></i>
+            <span>Bank Transfer</span>
+          </div>
+          <i class="fa fa-circle check-icon"></i>
         </label>
         <label class="payment-option">
           <input type="radio" name="payment" />
-          <span>👛 Wallet Balance (₦0.00)</span>
+          <div class="payment-left">
+            <i class="fa fa-wallet"></i>
+            <span>Wallet (₦0.00)</span>
+          </div>
+          <i class="fa fa-circle check-icon"></i>
         </label>
       </div>
-      <div class="review-row total" style="margin-top:24px">
+      <div class="total-pay-box">
         <p>Total Amount</p>
-        <p>₦25,000</p>
+        <p class="total-pay-amount">₦25,000</p>
       </div>
-      <button class="btn-primary full" onclick="showScreen('order-sent')">Pay Now 🔒</button>
+      <button class="btn-primary full" onclick="showScreen('order-sent')">
+        <i class="fa fa-lock"></i> Pay Now
+      </button>
+      <p class="invite-note"><i class="fa fa-shield-alt"></i> Secured by Paystack</p>
     </div>
   </div>
 
   <!-- Order Sent -->
   <div class="screen" id="order-sent">
     <div class="center-screen">
-      <div class="ob-emoji">✈️</div>
+      <div class="success-circle">
+        <i class="fa fa-paper-plane"></i>
+      </div>
       <h2>Invitation Sent!</h2>
-      <p>We've sent a gift invitation to your recipient. They'll accept or decline shortly.</p>
+      <p>We've notified your recipient. They'll accept and privately share their delivery address.</p>
       <button class="btn-primary full" onclick="showScreen('orders')">View Order</button>
-      <p class="switch-auth" style="margin-top:12px"><span onclick="showScreen('home')">Back to Home</span></p>
+      <p class="switch-auth" style="margin-top:16px"><span onclick="showScreen('home')">Back to Home</span></p>
     </div>
   </div>
 
   <!-- Orders -->
   <div class="screen" id="orders">
     <div class="inner-header">
-      <span onclick="showScreen('home')">←</span>
+      <i class="fa fa-arrow-left" onclick="showScreen('home')"></i>
       <p>My Orders</p>
       <span></span>
     </div>
-    <div class="form-content">
+    <div class="form-wrap">
       <div class="order-card">
-        <div class="order-top">
-          <span>🎂 Chocolate Cake</span>
-          <span class="order-status pending">Pending</span>
+        <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=100&q=80" class="order-img" />
+        <div class="order-info">
+          <p class="order-name">Chocolate Cake</p>
+          <p class="order-sub">To: John Doe · ₦25,000</p>
+          <p class="order-date">Jun 19, 2026</p>
         </div>
-        <p class="order-sub">To: John Doe • ₦25,000</p>
-        <p class="order-date">Jun 19, 2026</p>
+        <span class="order-status pending">Pending</span>
       </div>
       <div class="order-card">
-        <div class="order-top">
-          <span>🌹 Red Roses</span>
-          <span class="order-status delivered">Delivered</span>
+        <img src="https://images.unsplash.com/photo-1487530811015-780780169810?w=100&q=80" class="order-img" />
+        <div class="order-info">
+          <p class="order-name">Red Roses</p>
+          <p class="order-sub">To: Sarah · ₦18,000</p>
+          <p class="order-date">Jun 15, 2026</p>
         </div>
-        <p class="order-sub">To: Sarah • ₦18,000</p>
-        <p class="order-date">Jun 15, 2026</p>
+        <span class="order-status delivered">Delivered</span>
       </div>
     </div>
     <div class="bottom-nav">
-      <div class="nav-item" onclick="showScreen('home')">
-        <span>🏠</span><p>Home</p>
-      </div>
-      <div class="nav-item active" onclick="showScreen('orders')">
-        <span>📦</span><p>Orders</p>
-      </div>
-      <div class="nav-item" onclick="showScreen('rewards')">
-        <span>🎉</span><p>Rewards</p>
-      </div>
-      <div class="nav-item" onclick="showScreen('support')">
-        <span>💬</span><p>Support</p>
-      </div>
-      <div class="nav-item" onclick="showScreen('profile')">
-        <span>👤</span><p>Profile</p>
-      </div>
+      <div class="nav-item" onclick="setNav('home')"><i class="fa fa-home"></i><p>Home</p></div>
+      <div class="nav-item active" onclick="setNav('orders')"><i class="fa fa-box"></i><p>Orders</p></div>
+      <div class="nav-item" onclick="setNav('rewards')"><i class="fa fa-gift"></i><p>Rewards</p></div>
+      <div class="nav-item" onclick="setNav('support')"><i class="fa fa-headset"></i><p>Support</p></div>
+      <div class="nav-item" onclick="setNav('profile')"><i class="fa fa-user"></i><p>Profile</p></div>
     </div>
   </div>
 
   <!-- Rewards -->
   <div class="screen" id="rewards">
     <div class="inner-header">
-      <span onclick="showScreen('home')">←</span>
+      <i class="fa fa-arrow-left" onclick="showScreen('home')"></i>
       <p>Rewards</p>
       <span></span>
     </div>
-    <div class="form-content">
-      <div class="rewards-card">
+    <div class="form-wrap">
+      <div class="rewards-hero">
         <p class="rewards-label">Your Reward Balance</p>
         <h2 class="rewards-amount">₦0</h2>
-        <p class="rewards-sub">Earn ₦500 for every friend you invite who uses JustSend</p>
+        <p class="rewards-sub">Earn ₦500 for every friend who uses JustSend via your link</p>
       </div>
       <div class="referral-box">
         <p class="referral-title">Your Referral Link</p>
-        <div class="referral-link-row">
+        <div class="referral-row">
           <p class="referral-link">justsend.app/ref/israel</p>
-          <button class="btn-otp" onclick="copyReferral()">Copy</button>
+          <button class="btn-otp" onclick="copyReferral()"><i class="fa fa-copy"></i> Copy</button>
         </div>
       </div>
-      <div class="rewards-note">
-        <p>💡 Rewards can only be used to offset payment on your next gift order.</p>
+      <div class="reward-note-box">
+        <i class="fa fa-info-circle"></i>
+        <p>Rewards can only be used to offset payment on your next gift order. They cannot be withdrawn as cash.</p>
       </div>
-      <button class="btn-primary full" style="opacity:0.5">Redeem Rewards</button>
-      <p class="invite-note">You have no rewards to redeem yet. Invite friends to earn.</p>
+      <button class="btn-primary full disabled-btn">Redeem Rewards</button>
+      <p class="invite-note">No rewards yet. Share your link to start earning.</p>
     </div>
     <div class="bottom-nav">
-      <div class="nav-item" onclick="showScreen('home')">
-        <span>🏠</span><p>Home</p>
-      </div>
-      <div class="nav-item" onclick="showScreen('orders')">
-        <span>📦</span><p>Orders</p>
-      </div>
-      <div class="nav-item active" onclick="showScreen('rewards')">
-        <span>🎉</span><p>Rewards</p>
-      </div>
-      <div class="nav-item" onclick="showScreen('support')">
-        <span>💬</span><p>Support</p>
-      </div>
-      <div class="nav-item" onclick="showScreen('profile')">
-        <span>👤</span><p>Profile</p>
-      </div>
+      <div class="nav-item" onclick="setNav('home')"><i class="fa fa-home"></i><p>Home</p></div>
+      <div class="nav-item" onclick="setNav('orders')"><i class="fa fa-box"></i><p>Orders</p></div>
+      <div class="nav-item active" onclick="setNav('rewards')"><i class="fa fa-gift"></i><p>Rewards</p></div>
+      <div class="nav-item" onclick="setNav('support')"><i class="fa fa-headset"></i><p>Support</p></div>
+      <div class="nav-item" onclick="setNav('profile')"><i class="fa fa-user"></i><p>Profile</p></div>
     </div>
   </div>
 
   <!-- Support -->
   <div class="screen" id="support">
     <div class="inner-header">
-      <span onclick="showScreen('home')">←</span>
-      <p>Customer Support</p>
+      <i class="fa fa-arrow-left" onclick="showScreen('home')"></i>
+      <p>Support</p>
       <span></span>
     </div>
-    <div class="chat-container" id="chat-messages">
+    <div class="chat-wrap" id="chat-messages">
       <div class="chat-msg bot">
-        <p>👋 Hi! I'm the JustSend support assistant. How can I help you today?</p>
+        <p>👋 Hi! I'm the JustSend assistant. How can I help you today?</p>
       </div>
     </div>
     <div class="chat-input-row">
-      <input type="text" id="support-input" placeholder="Type your message..." class="input-field chat-input" />
-      <button class="btn-send" onclick="sendSupportMessage()">Send</button>
+      <input type="text" id="support-input" placeholder="Type a message..." class="input-field chat-input" />
+      <button class="btn-send" onclick="sendSupportMessage()"><i class="fa fa-paper-plane"></i></button>
     </div>
     <div class="bottom-nav">
-      <div class="nav-item" onclick="showScreen('home')">
-        <span>🏠</span><p>Home</p>
-      </div>
-      <div class="nav-item" onclick="showScreen('orders')">
-        <span>📦</span><p>Orders</p>
-      </div>
-      <div class="nav-item" onclick="showScreen('rewards')">
-        <span>🎉</span><p>Rewards</p>
-      </div>
-      <div class="nav-item active" onclick="showScreen('support')">
-        <span>💬</span><p>Support</p>
-      </div>
-      <div class="nav-item" onclick="showScreen('profile')">
-        <span>👤</span><p>Profile</p>
-      </div>
+      <div class="nav-item" onclick="setNav('home')"><i class="fa fa-home"></i><p>Home</p></div>
+      <div class="nav-item" onclick="setNav('orders')"><i class="fa fa-box"></i><p>Orders</p></div>
+      <div class="nav-item" onclick="setNav('rewards')"><i class="fa fa-gift"></i><p>Rewards</p></div>
+      <div class="nav-item active" onclick="setNav('support')"><i class="fa fa-headset"></i><p>Support</p></div>
+      <div class="nav-item" onclick="setNav('profile')"><i class="fa fa-user"></i><p>Profile</p></div>
     </div>
   </div>
 
   <!-- Profile -->
   <div class="screen" id="profile">
-    <div class="inner-header">
-      <span onclick="showScreen('home')">←</span>
-      <p>Profile</p>
-      <span></span>
+    <div class="profile-hero">
+      <div class="profile-avatar-wrap">
+        <div class="profile-avatar"><i class="fa fa-user"></i></div>
+      </div>
+      <p class="profile-name" id="profile-name">Israel</p>
+      <p class="profile-email" id="profile-email">olumuyiwaisreal1@gmail.com</p>
     </div>
-    <div class="form-content">
-      <div class="profile-avatar">👤</div>
-      <p class="profile-name">Israel Olumuyiwa</p>
-      <p class="profile-email">olumuyiwaisreal1@gmail.com</p>
+    <div class="form-wrap">
       <div class="profile-menu">
-        <div class="profile-item">
-          <span>📦</span><p>My Orders</p><span>→</span>
+        <div class="profile-item" onclick="setNav('orders')">
+          <div class="profile-item-left">
+            <div class="profile-icon-wrap"><i class="fa fa-box"></i></div>
+            <p>My Orders</p>
+          </div>
+          <i class="fa fa-chevron-right"></i>
+        </div>
+        <div class="profile-item" onclick="setNav('rewards')">
+          <div class="profile-item-left">
+            <div class="profile-icon-wrap"><i class="fa fa-gift"></i></div>
+            <p>Rewards</p>
+          </div>
+          <i class="fa fa-chevron-right"></i>
         </div>
         <div class="profile-item">
-          <span>🎉</span><p>Rewards</p><span>→</span>
+          <div class="profile-item-left">
+            <div class="profile-icon-wrap"><i class="fa fa-credit-card"></i></div>
+            <p>Payment Methods</p>
+          </div>
+          <i class="fa fa-chevron-right"></i>
         </div>
         <div class="profile-item">
-          <span>💳</span><p>Payment Methods</p><span>→</span>
+          <div class="profile-item-left">
+            <div class="profile-icon-wrap"><i class="fa fa-bell"></i></div>
+            <p>Notifications</p>
+          </div>
+          <i class="fa fa-chevron-right"></i>
         </div>
         <div class="profile-item">
-          <span>🔔</span><p>Notifications</p><span>→</span>
+          <div class="profile-item-left">
+            <div class="profile-icon-wrap"><i class="fa fa-shield-alt"></i></div>
+            <p>Privacy & Security</p>
+          </div>
+          <i class="fa fa-chevron-right"></i>
         </div>
-        <div class="profile-item">
-          <span>🔒</span><p>Privacy & Security</p><span>→</span>
-        </div>
-        <div class="profile-item" onclick="showScreen('login')">
-          <span>🚪</span><p style="color:red">Log Out</p><span>→</span>
+        <div class="profile-item logout" onclick="showScreen('login')">
+          <div class="profile-item-left">
+            <div class="profile-icon-wrap red"><i class="fa fa-sign-out-alt"></i></div>
+            <p style="color:#e53e3e">Log Out</p>
+          </div>
+          <i class="fa fa-chevron-right"></i>
         </div>
       </div>
     </div>
     <div class="bottom-nav">
-      <div class="nav-item" onclick="showScreen('home')">
-        <span>🏠</span><p>Home</p>
-      </div>
-      <div class="nav-item" onclick="showScreen('orders')">
-        <span>📦</span><p>Orders</p>
-      </div>
-      <div class="nav-item" onclick="showScreen('rewards')">
-        <span>🎉</span><p>Rewards</p>
-      </div>
-      <div class="nav-item" onclick="showScreen('support')">
-        <span>💬</span><p>Support</p>
-      </div>
-      <div class="nav-item active" onclick="showScreen('profile')">
-        <span>👤</span><p>Profile</p>
-      </div>
+      <div class="nav-item" onclick="setNav('home')"><i class="fa fa-home"></i><p>Home</p></div>
+      <div class="nav-item" onclick="setNav('orders')"><i class="fa fa-box"></i><p>Orders</p></div>
+      <div class="nav-item" onclick="setNav('rewards')"><i class="fa fa-gift"></i><p>Rewards</p></div>
+      <div class="nav-item" onclick="setNav('support')"><i class="fa fa-headset"></i><p>Support</p></div>
+      <div class="nav-item active" onclick="setNav('profile')"><i class="fa fa-user"></i><p>Profile</p></div>
     </div>
   </div>
 
