@@ -1,18 +1,16 @@
 const API_URL = 'https://justsend-backend-g551.onrender.com';
 
 let currentPhone = '';
+let currentPinId = '';
 
-// Show specific screen
 function showScreen(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
 }
 
-// Auto move to phone screen after splash
 window.onload = () => {
   setTimeout(() => showScreen('phone-screen'), 2000);
 
-  // OTP box auto focus
   const boxes = document.querySelectorAll('.otp-box');
   boxes.forEach((box, i) => {
     box.addEventListener('input', () => {
@@ -28,7 +26,6 @@ window.onload = () => {
   });
 };
 
-// Send OTP
 async function sendOTP() {
   const phoneInput = document.getElementById('phone-input').value.trim();
   const errorEl = document.getElementById('phone-error');
@@ -38,7 +35,6 @@ async function sendOTP() {
     return;
   }
 
-  // Format to international
   let phone = phoneInput;
   if (phone.startsWith('0')) {
     phone = '+234' + phone.slice(1);
@@ -57,6 +53,7 @@ async function sendOTP() {
     const data = await res.json();
 
     if (res.ok) {
+      currentPinId = data.pinId;
       errorEl.textContent = '';
       showScreen('otp-screen');
     } else {
@@ -67,7 +64,6 @@ async function sendOTP() {
   }
 }
 
-// Verify OTP
 async function verifyOTP() {
   const boxes = document.querySelectorAll('.otp-box');
   const otp = Array.from(boxes).map(b => b.value).join('');
@@ -84,7 +80,7 @@ async function verifyOTP() {
     const res = await fetch(`${API_URL}/api/auth/verify-otp`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ phone: currentPhone, otp })
+      body: JSON.stringify({ phone: currentPhone, otp, pinId: currentPinId })
     });
 
     const data = await res.json();
