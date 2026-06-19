@@ -22,12 +22,16 @@ body {
   flex-direction: column;
   position: fixed;
   top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  overflow-y: auto;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0 auto;
+  overflow-y: scroll;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
 }
+
 
 .screen.active { display: flex; }
 
