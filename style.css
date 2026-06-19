@@ -6,43 +6,45 @@
 }
 
 body {
-  background: #f5f5f5;
+  background: #f0f0f0;
   display: flex;
   justify-content: center;
-  align-items: center;
   min-height: 100vh;
 }
 
 .screen {
   display: none;
   width: 100%;
-  max-width: 400px;
+  max-width: 430px;
   min-height: 100vh;
   background: #fff;
-  padding: 40px 24px;
+  position: relative;
 }
 
 .screen.active {
   display: flex;
   flex-direction: column;
-  justify-content: center;
 }
 
+/* Splash */
 .splash-content {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   text-align: center;
   gap: 16px;
+  height: 100vh;
+  padding: 40px 24px;
+  cursor: pointer;
 }
 
-.logo {
-  width: 80px;
-  height: 80px;
+.logo-box {
+  font-size: 72px;
 }
 
 h1 {
-  font-size: 32px;
+  font-size: 36px;
   font-weight: 800;
   color: #222;
 }
@@ -53,18 +55,100 @@ h1 {
 
 .splash-content p {
   color: #666;
+  font-size: 16px;
+  max-width: 260px;
+}
+
+/* Onboarding */
+.onboarding-top {
+  display: flex;
+  justify-content: space-between;
+  padding: 56px 24px 0;
+}
+
+.skip {
+  color: #6C3CE1;
+  font-weight: 600;
+  cursor: pointer;
   font-size: 15px;
 }
 
+.onboarding-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 40px 24px;
+  gap: 16px;
+  flex: 1;
+}
+
+.onboarding-img {
+  font-size: 100px;
+  margin-bottom: 8px;
+}
+
+.onboarding-content h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #222;
+  max-width: 280px;
+}
+
+.onboarding-content p {
+  color: #666;
+  font-size: 15px;
+  max-width: 280px;
+}
+
+.dots {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ddd;
+}
+
+.dot.active {
+  background: #6C3CE1;
+  width: 24px;
+  border-radius: 4px;
+}
+
+/* Buttons */
+.btn-primary {
+  background: #6C3CE1;
+  color: #fff;
+  border: none;
+  border-radius: 14px;
+  padding: 16px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  width: calc(100% - 48px);
+  margin: 0 24px 40px;
+  display: block;
+}
+
+.btn-primary:active {
+  opacity: 0.9;
+}
+
+/* Forms */
 .screen-content {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  padding-top: 60px;
+  padding: 60px 24px 40px;
+  gap: 14px;
 }
 
 .screen-content h2 {
-  font-size: 24px;
+  font-size: 26px;
   font-weight: 700;
   color: #222;
 }
@@ -72,82 +156,47 @@ h1 {
 .screen-content p {
   color: #666;
   font-size: 14px;
+  margin-bottom: 8px;
 }
 
-.input-group {
-  display: flex;
-  align-items: center;
-  border: 1.5px solid #ddd;
+.input-field {
+  border: 1.5px solid #e0e0e0;
   border-radius: 12px;
-  padding: 14px 16px;
-  gap: 8px;
-  margin-top: 8px;
-}
-
-.flag {
-  font-size: 14px;
-  color: #444;
-  white-space: nowrap;
-}
-
-.input-group input {
-  border: none;
-  outline: none;
+  padding: 15px 16px;
   font-size: 15px;
   width: 100%;
-  color: #222;
-}
-
-.btn-primary {
-  background: #6C3CE1;
-  color: #fff;
-  border: none;
-  border-radius: 12px;
-  padding: 16px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  width: 100%;
-  margin-top: 8px;
-}
-
-.btn-primary:active {
-  opacity: 0.9;
-}
-
-.otp-inputs {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-  margin-top: 8px;
-}
-
-.otp-box {
-  width: 48px;
-  height: 52px;
-  border: 1.5px solid #ddd;
-  border-radius: 10px;
-  text-align: center;
-  font-size: 20px;
-  font-weight: 700;
-  color: #222;
   outline: none;
+  color: #222;
 }
 
-.otp-box:focus {
+.input-field:focus {
   border-color: #6C3CE1;
 }
 
-.resend {
-  text-align: center;
-  font-size: 13px;
-  color: #666;
+.otp-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
 }
 
-.resend span {
+.otp-input {
+  flex: 1;
+}
+
+.btn-otp {
+  background: #f0ebff;
   color: #6C3CE1;
+  border: none;
+  border-radius: 12px;
+  padding: 15px 14px;
+  font-size: 13px;
   font-weight: 600;
   cursor: pointer;
+  white-space: nowrap;
+}
+
+.btn-otp:active {
+  opacity: 0.8;
 }
 
 .error-msg {
@@ -156,15 +205,31 @@ h1 {
   min-height: 16px;
 }
 
+.switch-auth {
+  text-align: center;
+  font-size: 14px;
+  color: #666;
+  margin-top: 8px;
+}
+
+.switch-auth span {
+  color: #6C3CE1;
+  font-weight: 600;
+  cursor: pointer;
+}
+
 .center {
   align-items: center;
-  text-align: center;
-  padding-top: 0;
   justify-content: center;
-  min-height: 100vh;
+  text-align: center;
 }
 
 .success-icon {
-  font-size: 64px;
+  font-size: 72px;
   margin-bottom: 16px;
+}
+
+.screen-content.center .btn-primary {
+  width: 100%;
+  margin: 16px 0 0;
 }
