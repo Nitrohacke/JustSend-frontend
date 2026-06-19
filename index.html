@@ -1,13 +1,127 @@
-  <!-- Email Screen -->
-  <div class="screen" id="phone-screen">
-    <div class="screen-content">
-      <h2>Enter your email</h2>
-      <p>We'll send you a verification code</p>
-      <div class="input-group">
-        <span class="flag">✉️</span>
-        <input type="email" id="phone-input" placeholder="you@gmail.com" />
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>JustSend</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Splash Screen -->
+  <div class="screen active" id="splash" onclick="showScreen('onboarding-1')">
+    <div class="splash-content">
+      <div class="logo-box">🎁</div>
+      <h1><span class="purple">just</span>send</h1>
+      <p>Send surprise gifts without knowing the address</p>
+      <div class="dots">
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
       </div>
-      <button class="btn-primary" onclick="sendOTP()">Send OTP</button>
-      <p class="error-msg" id="phone-error"></p>
     </div>
   </div>
+
+  <!-- Onboarding 1 -->
+  <div class="screen" id="onboarding-1">
+    <div class="onboarding-top">
+      <span></span>
+      <span class="skip" onclick="showScreen('signup')">Skip</span>
+    </div>
+    <div class="onboarding-content">
+      <div class="onboarding-img">🌍</div>
+      <h2>Send surprise gifts anywhere in the world</h2>
+      <p>Choose a gift, enter the recipient's contact and we handle the rest.</p>
+      <div class="dots">
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+    </div>
+    <button class="btn-primary" onclick="showScreen('onboarding-2')">Next</button>
+  </div>
+
+  <!-- Onboarding 2 -->
+  <div class="screen" id="onboarding-2">
+    <div class="onboarding-top">
+      <span></span>
+      <span class="skip" onclick="showScreen('signup')">Skip</span>
+    </div>
+    <div class="onboarding-content">
+      <div class="onboarding-img">📱</div>
+      <h2>They choose to accept and receive it safely</h2>
+      <p>Recipients get an invite, confirm their address privately and receive their gift.</p>
+      <div class="dots">
+        <span class="dot"></span>
+        <span class="dot active"></span>
+        <span class="dot"></span>
+      </div>
+    </div>
+    <button class="btn-primary" onclick="showScreen('onboarding-3')">Next</button>
+  </div>
+
+  <!-- Onboarding 3 -->
+  <div class="screen" id="onboarding-3">
+    <div class="onboarding-top">
+      <span></span>
+      <span class="skip" onclick="showScreen('signup')">Skip</span>
+    </div>
+    <div class="onboarding-content">
+      <div class="onboarding-img">🔒</div>
+      <h2>Safe, private and reliable delivery</h2>
+      <p>The sender never sees the address. Only the recipient controls where it goes.</p>
+      <div class="dots">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot active"></span>
+      </div>
+    </div>
+    <button class="btn-primary" onclick="showScreen('signup')">Get Started</button>
+  </div>
+
+  <!-- Sign Up Screen -->
+  <div class="screen" id="signup">
+    <div class="screen-content">
+      <h2>Create your account</h2>
+      <p>Join JustSend and start gifting</p>
+      <input type="text" id="signup-name" placeholder="Full Name" class="input-field" />
+      <input type="email" id="signup-email" placeholder="Email Address" class="input-field" />
+      <div class="otp-row">
+        <input type="text" id="signup-otp" placeholder="Enter OTP" class="input-field otp-input" />
+        <button class="btn-otp" onclick="sendOTP('signup')">Request Code</button>
+      </div>
+      <p class="error-msg" id="signup-error"></p>
+      <button class="btn-primary" onclick="verifyAndSignup()">Sign Up</button>
+      <p class="switch-auth">Already have an account? <span onclick="showScreen('login')">Log In</span></p>
+    </div>
+  </div>
+
+  <!-- Login Screen -->
+  <div class="screen" id="login">
+    <div class="screen-content">
+      <h2>Welcome back 👋</h2>
+      <p>Log in to continue</p>
+      <input type="email" id="login-email" placeholder="Email Address" class="input-field" />
+      <div class="otp-row">
+        <input type="text" id="login-otp" placeholder="Enter OTP" class="input-field otp-input" />
+        <button class="btn-otp" onclick="sendOTP('login')">Request Code</button>
+      </div>
+      <p class="error-msg" id="login-error"></p>
+      <button class="btn-primary" onclick="verifyAndLogin()">Log In</button>
+      <p class="switch-auth">Don't have an account? <span onclick="showScreen('signup')">Sign Up</span></p>
+    </div>
+  </div>
+
+  <!-- Success Screen -->
+  <div class="screen" id="success">
+    <div class="screen-content center">
+      <div class="success-icon">🎉</div>
+      <h2>You're in!</h2>
+      <p>Welcome to JustSend</p>
+      <button class="btn-primary">Continue</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
