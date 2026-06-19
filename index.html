@@ -1,65 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>JustSend</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-
-  <!-- Splash Screen -->
-  <div class="screen active" id="splash">
-    <div class="splash-content">
-      <img src="logo.png" alt="JustSend" class="logo" />
-      <h1><span class="purple">just</span>send</h1>
-      <p>Send surprise gifts without knowing the address</p>
-    </div>
-  </div>
-
-  <!-- Phone Number Screen -->
+  <!-- Email Screen -->
   <div class="screen" id="phone-screen">
     <div class="screen-content">
-      <h2>Enter your phone number</h2>
+      <h2>Enter your email</h2>
       <p>We'll send you a verification code</p>
       <div class="input-group">
-        <span class="flag">🇳🇬 +234</span>
-        <input type="tel" id="phone-input" placeholder="08012345678" />
+        <span class="flag">✉️</span>
+        <input type="email" id="phone-input" placeholder="you@gmail.com" />
       </div>
       <button class="btn-primary" onclick="sendOTP()">Send OTP</button>
       <p class="error-msg" id="phone-error"></p>
     </div>
   </div>
-
-  <!-- OTP Screen -->
-  <div class="screen" id="otp-screen">
-    <div class="screen-content">
-      <h2>Verify your number</h2>
-      <p>Enter the 6-digit code sent to your number</p>
-      <div class="otp-inputs">
-        <input type="tel" maxlength="1" class="otp-box" />
-        <input type="tel" maxlength="1" class="otp-box" />
-        <input type="tel" maxlength="1" class="otp-box" />
-        <input type="tel" maxlength="1" class="otp-box" />
-        <input type="tel" maxlength="1" class="otp-box" />
-        <input type="tel" maxlength="1" class="otp-box" />
-      </div>
-      <button class="btn-primary" onclick="verifyOTP()">Verify</button>
-      <p class="resend">Didn't get it? <span onclick="sendOTP()">Resend</span></p>
-      <p class="error-msg" id="otp-error"></p>
-    </div>
-  </div>
-
-  <!-- Success Screen -->
-  <div class="screen" id="success-screen">
-    <div class="screen-content center">
-      <div class="success-icon">🎉</div>
-      <h2>You're verified!</h2>
-      <p>Welcome to JustSend</p>
-      <button class="btn-primary">Continue</button>
-    </div>
-  </div>
-
-  <script src="app.js"></script>
-</body>
-</html>
