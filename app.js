@@ -148,6 +148,35 @@ async function verifyAndLogin() {
     errorEl.textContent = 'Network error, please try again';
   }
 }
+async function initiatePayment() {
+  const email = document.getElementById('profile-email').textContent;
+  const total = selectedGift.price + 5000;
+
+  try {
+    const res = await fetch(`${API_URL}/api/payment/initialize`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email,
+        amount: total,
+        metadata: {
+          gift: selectedGift.name,
+          recipient: document.getElementById('rec-name')?.value || 'Unknown'
+        }
+      })
+    });
+
+    const data = await res.json();
+
+    if (data.authorization_url) {
+      window.location.href = data.authorization_url;
+    } else {
+      alert('Payment failed to initialize');
+    }
+  } catch (err) {
+    alert('Network error, please try again');
+  }
+}
 
 function copyReferral() {
   navigator.clipboard.writeText('https://justsend.app/ref/israel')
